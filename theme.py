@@ -17,15 +17,15 @@ class Color:
 
 
 class Logo:
-    LOGO = "static/logos/cutthroat.svg"
-    LOGO_NAME = "static/logos/cutthroat_name&logo.svg"
-    LOGO_NAME_long = "static/logos/cutthroat_name&logo_long.svg"
+    LOGO = "static/img/logos/cutthroat.svg"
+    LOGO_NAME = "static/img/logos/cutthroat_name&logo.svg"
+    LOGO_NAME_long = "static/img/logos/cutthroat_name&logo_long.svg"
 
 
 class Icon:
-    HARDWARE = "static/icons/hardware.svg"
-    INTEGRATION = "static/icons/integration.svg"
-    SOFTWARE = "static/icons/software.svg"
+    HARDWARE = "static/img/icon/hardware.svg"
+    INTEGRATION = "static/img/icon/integration.svg"
+    SOFTWARE = "static/img/icon/software.svg"
 
 
 # ---------------------
@@ -52,7 +52,8 @@ def apply():
     ui.query("body").style(
         f"""
         background-color: {Color.DEEP_BROWN};
-        margin: 0;
+        margin: 0 auto;
+        max-width: 80vw;
         padding: 0;
     """
     )

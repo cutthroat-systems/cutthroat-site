@@ -10,6 +10,12 @@ def show_home():
     home.render()
 
 
+@ui.page("/services")
+def show_services():
+    theme.apply()
+    services.render()
+
+
 @ui.page("/about")
 def show_about():
     theme.apply()
@@ -24,12 +30,6 @@ def show_contact():
 
 
 #    contact.render()
-
-
-@ui.page("/services")
-def show_services():
-    theme.apply()
-    services.render()
 
 
 ui.run(reload=True)
