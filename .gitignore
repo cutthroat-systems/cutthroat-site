@@ -1,0 +1,62 @@
+# Bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Environment variable or config files
+.env
+.env.*
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python packaging
+*.egg-info/
+*.eggs/
+build/
+dist/
+
+# Log files
+*.log
+
+# OS + archive temp files
+*.bak
+*.tmp
+*.old
+*.zip
+
+# Node/npm stuff
+node_modules/
+npm-debug.log
+
+# Docker-specific files
+docker-compose.override.yml
+*.pid
+
+# PyInstaller
+*.spec
+
+# NiceGUI-specific files
+.nicegui/
+
+# Coverage/test artifacts
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+
+# Local dev servers or databases
+*.sqlite3
+*.db
