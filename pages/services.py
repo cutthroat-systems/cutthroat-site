@@ -7,17 +7,17 @@ services = {
     "Hardware Design": [
         {
             "title": "Production Design",
-            "description": "Our engineers have combined decades of experience designing mechanical mechanisms within the industry.",
+            "description": "Our engineers leverage decades of experience to design mechanical mechanisms tailored to meet industry standards. We focus on creating robust, scalable, and efficient solutions for production.",
             "icon": "ree",
         },
         {
             "title": "Thermal Engineering Consultation",
-            "description": "Jarred REEEE",
+            "description": "Optimize your systems with expert thermal analysis and engineering. From heat dissipation to thermal management, we ensure peak performance under demanding conditions.",
             "icon": "ree",
         },
         {
             "title": "Rapid Protyping & Manufacturing Consultation",
-            "description": "ree",
+            "description": "Accelerate your product development with our rapid prototyping services. We provide guidance on material selection, manufacturing techniques, and optimization for production.",
             "icon": "ree",
         },
     ],
@@ -25,36 +25,56 @@ services = {
     "Software Engineering": [
         {
             "title": "Data Visualization and Analytics",
-            "description": "ree",
+            "description": "Transform raw data into actionable insights with our advanced visualization tools. We specialize in creating intuitive dashboards and analytics systems to empower decision-making.",
             "icon": "ree",
         },
         {
             "title": "Integrated Software & Low-level Programming",
-            "description": "ree",
+            "description": "Our expertise includes firmware development, system integration, and low-level programming to ensure seamless operation and compatibility with hardware.",
             "icon": "ree",
         },
-        {"title": "Custom Software Developement", "description": "ree", "icon": "ree"},
+        {
+            "title": "Custom Software Developement", 
+            "description": "From concept to deployment, we develop tailored software solutions designed to address unique business challenges and enhance operational efficiency.", 
+            "icon": "ree"},
     ],
     # Column 3 -----------------------------------------------
     "System Integration": [
         {
             "title": "Precision and Scientific Control Systems",
-            "description": "ree",
+            "description": "Specializing in high-accuracy control systems, we design and integrate solutions for scientific and industrial applications that require uncompromising precision.",
             "icon": "ree",
         },
-        {"title": "Private Militia", "description": "ree", "icon": "ree"},
-        {"title": "Deployment and Training", "description": "ree", "icon": "ree"},
+        {"title": "Calibration Systems and Equipment Automations", "description": "Streamline your system processes with our advanced automation solutions. We specialize in developing systems that seamlessly integrate with your equipment, enabling automated data collection, precision adjustments, and comprehensive reporting. Our solutions reduce manual intervention, enhance accuracy, and save valuable time.", "icon": "ree"},
+        {"title": "Deployment and Training", "description": "Ensure smooth transitions and effective system use with our comprehensive deployment and training services. We provide the tools and knowledge your team needs to succeed.", "icon": "ree"},
     ],
 }
 
+imglist = ["static/img/services/Hardware Design.jpg","static/img/services/Software Engineering.jpg","static/img/services/System Integration.jpg"]
+
 
 def render() -> None:
-    with ui.column().classes('w-full mx-auto pt-24 pb-0 gap-4 items-center').props(
-        'id=about'
-    ):
-        ui.label('Services Provided').classes(
-            'text-5xl italic font-bold text-center pb-4'
-        ).style(f"color: {theme.Color.PARCHMENT};")
+    with ui.column().classes('w-full mx-auto pt-24 pb-0 gap-4 items-center').props('id=about'):
+                
+        ui.image('static/img/services/TroutCard.png').style(
+            "width: 600px; height: 200px; object-fit: fill; margin: 0; padding: 0; display:"
+            )
+        
+        ui.label('Services Provided').classes('text-5xl italic font-bold text-center pb-4').style(f"color: {theme.Color.PARCHMENT};")
+        """
+        with ui.card().classes('rounded-2xl shadow-lg w-auto px-20 py-2 flex flex-col items-center text-center').style(f'background-color: {theme.Color.SOFT_ORANGE};'):
+            with ui.row().classes('w-full justify-center gap-3 flex-wrap'):
+                ui.image(theme.Icon.HARDWARE).props("fit=contain").classes(
+                                "w-16 h-16 service-icon"
+                            ).style("overflow: visible; object-fit: contain;")
+                ui.image(theme.Icon.SOFTWARE).props("fit=contain").classes(
+                                "w-16 h-16 service-icon"
+                            ).style("overflow: visible; object-fit: contain;")
+                ui.image(theme.Icon.INTEGRATION).props("fit=contain").classes(
+                                "w-16 h-16 service-icon"
+                            ).style("overflow: visible; object-fit: contain;")
+                """
+                           
         ui.label(
             "At Cutthroat Systems, our team of exceptional engineers brings together expertise in software, mechanical, and aerospace engineering to tackle even the most complex challenges. "
             "We specialize in consulting, CAD design and prototyping, precision mechanical engineering, aerospace solutions, custom software development, and systems design for calibration and automation. "
@@ -65,57 +85,29 @@ def render() -> None:
             f"color: {theme.Color.PARCHMENT}; max-width: 120ch;"
         )
 
-        # ui.image('assets\TempBanner.png')
-        with ui.row().classes('w-full justify-center gap-8'):
-            ui.video(
-                'static/vid/Manufacturing.mp4',
-                controls=False,
-                autoplay=True,
-                muted=True,
-                loop=True,
-            ).style('height: 440px;')
-            ui.video(
-                'static/vid/Programming.mp4',
-                controls=False,
-                autoplay=True,
-                muted=True,
-                loop=True,
-            ).style('height: 440px;')
-            ui.video(
-                'static/vid/serverRoom.mp4',
-                controls=False,
-                autoplay=True,
-                muted=True,
-                loop=True,
-            ).style('height: 440px;')
-
-        with ui.card().classes('rounded-2xl shadow-lg w-full px-4 py-8').style(
-            f'background-color: {theme.Color.PARCHMENT};'
-        ):
-            # Row for horizontal alignment
-            with ui.row().classes('w-full justify-center gap-8'):
-                keys_list = list(services.keys())  # Get the keys for the columns
+        with ui.row().classes('w-full justify-center gap-3 flex-wrap'):
+            keys_list = list(services.keys())  # Get the keys for the columns
+            with ui.card().classes('rounded-2xl shadow-lg w-25% min-w-[150px] px-4 py-4 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300').style(f"background-color: {theme.Color.PARCHMENT};"):
                 for i, key in enumerate(keys_list):
-                    # Render each column
-                    with ui.column().classes('w-1/4 items-center text-center gap-2'):
-                        ui.label(key).classes('text-4xl italic font-bold').style(
-                            f"color: {theme.Color.BURNT_ORANGE};"
-                        )
+                    with ui.column().classes('w-full items-center text-left gap-2'):
+                        # Parallax Image
+                        with ui.element("q-parallax").props(f"src='{imglist[i]}' height='150' auto-width speed=30").style('background-position: bottom;'):
+                            with ui.card().classes('rounded-2xl shadow-lg w-auto px-2 py-2 flex flex-col items-center text-center').style(f'background-color: {theme.Color.SOFT_ORANGE};'):
+                                ui.label(key).classes('text-4xl italic font-bold').style(
+                                    f"color: {theme.Color.DARK_BROWN};"
+                                )
                         ui.separator()
-                        add_info(key)
+                        with ui.column().classes('w-full text-left gap-2'):
+                            add_info(key)
 
-                    # Add a vertical separator except after the last column
-                    if i < len(keys_list) - 1:
-                        ui.separator().props("vertical").style(
-                            'border-left: 4px solid var(--theme-color-soft-orange); height: 100%;'
-                        )  # tbis aint working for shit rn
-
+       
 
 def add_info(key: str) -> None:
-    for service in services[key]:
-        ui.label(service["title"]).classes('text-3xl text-center font-bold')
-        ui.label(service["description"]).classes('text-lg text-left font-medium')
-        ui.separator()
+    for i, service in enumerate(services[key]):
+        ui.label(service["title"]).classes('text-2xl text-left font-bold').style(f"color: {theme.Color.BURNT_ORANGE};")
+        ui.label(service["description"]).classes('text-lg text-left font-medium').style(f"color: {theme.Color.DARK_BROWN};")
+        if (i != len(services) - 1):
+            ui.separator()
 
     """def clicked(key : str ) -> None: #Function to populate screen w/ button info
         right_column.clear()
@@ -123,7 +115,7 @@ def add_info(key: str) -> None:
         for service in services[key]:
             with right_column:
                 with ui.card(align_items="baseline").classes(f'rounded-2xl shadow-lg').style(f'background-color: {theme.Color.PARCHMENT}; width: 30vw; min-width: 200px;'):
-                    with ui.column().classes('w-full items-center'):
-                        ui.label(service["title"]).classes('text-3xl text-center font-bold')
+                    with ui.().classes('w-full items-center'):
+                        ui.labelcolumn(service["title"]).classes('text-3xl text-center font-bold')
                     with ui.column(align_items="start").classes('w-full mx-auto pt-0 pb-0 gap-1 items-left'):
                         ui.label(service["description"]).classes('text-lg text-left font-medium')"""
