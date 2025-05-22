@@ -1,7 +1,7 @@
 from nicegui import ui
 
 import theme
-from pages import home, services
+from pages import home, services, about
 
 
 @ui.page("/")
@@ -19,6 +19,7 @@ def show_services():
 @ui.page("/about")
 def show_about():
     theme.apply()
+    about.render()
 
 
 #    about.render()
@@ -32,4 +33,4 @@ def show_contact():
 #    contact.render()
 
 
-ui.run(reload=True)
+ui.run(reload=True, port = 8081)
