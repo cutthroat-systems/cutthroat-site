@@ -10,6 +10,22 @@ topBlurb = "\n".join([
     "Client satisfaction is at the heart of everything we do, and we take pride in transforming challenges into opportunities. "
 ])
 
+Pat_text = """Patrick is a seasoned business project manager, analytics expert, and software developer with a unique blend of financial acumen and technical creativity.
+
+
+He began his career at some of the nation’s largest lending institutions, managing a portfolio valued at nearly $500 million. Working with industry giants like Blackstone, Wells Fargo, and Bank of America, Patrick played a pivotal role in financing major high-rise developments across New York City. Leveraging his sharp analytical skills and strong foundation in mathematics, he built predictive models that could forecast loan performance and detect early signs of failure—bringing clarity to some of the most complex financing operations.
+
+
+His path eventually led to a private lending firm focused on small and medium-sized businesses. It was there that Patrick developed a deep respect for entrepreneurship and the calculated risks business owners take every day. Through data-driven analysis, he uncovered how even small operational improvements—like reducing time waste or tightening workflows—could dramatically impact a company’s success.
+
+
+It was during this time that Patrick made a discovery that would change the course of his career. Recognizing the motivational power of gamification, he designed an in-office funding leaderboard for the sales and underwriting teams. The results? Higher morale, better productivity, and a newfound passion for software. What began as a hobby quickly became a calling. With executive backing, Patrick officially transitioned into software development—and he hasn’t looked back.
+
+
+Today, Patrick leads financial strategy and business operations at Cutthroat Systems, a forward-thinking software and engineering design firm. While managing the business side, he’s also hands-on with software architecture and development. Currently pursuing a Master’s in Software Engineering, Patrick brings a rare perspective—bridging the worlds of business, data, and code—to help your company thrive."""
+
+
+
 people = [
         {
             "name":"Jarred Druzynski",
@@ -19,6 +35,8 @@ people = [
         },
         {
             "name":"Patrick Miller",
+            "description":Pat_text,
+            "icon":"static\img\headshots\PatHeadshot.jpg"
         },
 ]
 
