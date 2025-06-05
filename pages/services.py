@@ -57,7 +57,7 @@ def render() -> None:
     with ui.column().classes('w-full mx-auto pt-24 pb-0 gap-4 items-center').props('id=about'):
                 
         ui.image('static/img/services/TroutCard.png').style(
-            "width: 600px; height: 200px; object-fit: fill; margin: 0; padding: 0; display:"
+            "width: 60%; height: 60%; object-fit: fill; margin: 0; padding: 0; display:"
             )
         
         ui.label('Services Provided').classes('text-5xl italic font-bold text-center pb-4').style(f"color: {theme.Color.PARCHMENT};")
