@@ -1,75 +1,87 @@
 from nicegui import ui
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import requests
 import theme
+import re
 
+# Function to send email
 def send_email(name: str, email: str, phone: str, message: str) -> None:
-    try:
-        # Email configuration
-        sender_email = "your_email@example.com"  # Replace with your email
-        sender_password = "your_password"        # Replace with your email password
-        receiver_email = "receiver_email@example.com"  # Replace with the recipient's email
+    url = "https://api.zeptomail.com/v1.1/email"
+
+    payload = {
+        "from": {"address": "noreply@cutthroatsystems.com"},
+        "to": [
+            {
+                "email_address": {
+                    "address": "team@cutthroatsystems.com",
+                    "name": "Cutthroat Team"
+                }
+            }
+        ],
+        "subject": f"{name}: Contact Form Submission",
+        "htmlbody": (
+            f"<div>"
+            f"<b>Name:</b> {name}<br>"
+            f"<b>Email:</b> {email}<br>"
+            f"<b>Phone:</b> {phone}<br>"
+            f"<b>Message:</b> {message}"
+            f"</div>"
+        )
+    }
         
-        # Email content
-        subject = "New Contact Us Submission"
-        body = f"""
-        Name: {name}
-        Email: {email}
-        Phone: {phone}
-        Message: {message}
-        """
+    headers = {
+        'accept': "application/json",
+        'content-type': "application/json",
+        'authorization': "Zoho-enczapikey wSsVR60l+hajD/17mzetc71rn19SDlmnQEosjlDw6yP1HarE/Mdvn0zKUQahGvcYFmZgHTIaoOp9nRsE2jZdjN4ty10GASiF9mqRe1U4J3x17qnvhDzOW2ldkBSLLooJzwlinWVjEMsm+g==",
+    }
 
-        # Setting up the email message
-        msg = MIMEMultipart()
-        msg["From"] = sender_email
-        msg["To"] = receiver_email
-        msg["Subject"] = subject
-        msg.attach(MIMEText(body, "plain"))
+    response = requests.request("POST", url, json=payload, headers=headers)
+    if response.ok:
+        ui.notify('Message Sent!', type="positive")
+    else:
+        ui.notify(f'Failed to send message: {response.text}', type='negative')
 
-        # Sending the email
-        with smtplib.SMTP("smtp.gmail.com", 587) as server:  # Replace with your SMTP server
-            server.starttls()
-            server.login(sender_email, sender_password)
-            server.send_message(msg)
-        
-        ui.notify("Your message has been sent successfully!")
-    except Exception as e:
-        ui.notify(f"Failed to send message: {e}", color="negative")
-
-
+# Function to render the form
 def render() -> None:
-    with ui.column().classes('w-full mx-auto pt-24 pb-16 gap-8 items-center ').props('id=contact-us').style("padding: 5px"):
-        # Header
+
+    # Validation function
+    def validate_and_send():
+        if not name.value:
+            ui.notify("Name is required", type="negative")
+            return
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", email.value):
+            ui.notify("Invalid email format", type="negative")
+            return
+        if not re.match(r"^\+?\d{7,15}$", phone.value):
+            ui.notify("Invalid phone number format", type="negative")
+            return
+        if not message.value:
+            ui.notify("Message cannot be empty", type="negative")
+            return
+        send_email(name.value, email.value, phone.value, message.value)
+
+    # UI rendering
+    with ui.column().classes('w-full mx-auto pt-24 pb-16 gap-8 items-center').props('id=contact-us').style("padding: 5px"):
         ui.label('Contact Us').classes('text-5xl italic font-bold text-center').style(f"color: {theme.Color.PARCHMENT};")
-        
-        # Introduction
         ui.label(
             "We'd love to hear from you! Whether you have questions, feedback, or inquiries about our services, "
             "our team is here to help. Fill out the form below, and we’ll get back to you as soon as possible."
         ).classes('text-lg text-center font-medium').style(f"color: {theme.Color.PARCHMENT}; max-width: 80ch;")
-
-        # Contact Form Card
+        
         with ui.card().classes('rounded-2xl shadow-lg w-2/3 px-8 py-6 flex flex-col items-center gap-4').style(f"background-color: {theme.Color.PARCHMENT};"):
-            # Name Field
-            with ui.column().classes('w-full gap-2'):
-                ui.label('Your Name').classes('text-left font-bold').style(f"color: {theme.Color.DARK_BROWN};")
-                ui.input().props('placeholder="Enter your full name"').classes('w-full px-4 py-2 border rounded').style('background-color: white;')
+            ui.label('Your Name').classes('text-left font-bold').style(f"color: {theme.Color.DARK_BROWN};")
+            name = ui.input().props('placeholder="Enter your full name"').classes('w-full px-4 py-2 border rounded').style('background-color: white;')
 
-            # Email Field
-            with ui.column().classes('w-full gap-2'):
-                ui.label('Your Email').classes('text-left font-bold').style(f"color: {theme.Color.DARK_BROWN};")
-                ui.input().props('placeholder="Enter your email address"').classes('w-full px-4 py-2 border rounded').style('background-color: white;')
+            ui.label('Your Email').classes('text-left font-bold').style(f"color: {theme.Color.DARK_BROWN};")
+            email = ui.input().props('placeholder="Enter your email address"').classes('w-full px-4 py-2 border rounded').style('background-color: white;')
 
-            # Phone Number Field
-            with ui.column().classes('w-full gap-2'):
-                ui.label('Your Phone Number').classes('text-left font-bold').style(f"color: {theme.Color.DARK_BROWN};")
-                ui.input().props('placeholder="Enter your phone number"').classes('w-full px-4 py-2 border rounded').style('background-color: white;')
+            ui.label('Your Phone Number').classes('text-left font-bold').style(f"color: {theme.Color.DARK_BROWN};")
+            phone = ui.input().props('placeholder="Enter your phone number"').classes('w-full px-4 py-2 border rounded').style('background-color: white;')
 
-            # Message Field
-            with ui.column().classes('w-full gap-2'):
-                ui.label('Your Message').classes('text-left font-bold').style(f"color: {theme.Color.DARK_BROWN};")
-                ui.textarea().props('placeholder="Type your message here..." rows=5').classes('w-full px-4 py-2 border rounded').style('background-color: white;')
+            ui.label('Your Message').classes('text-left font-bold').style(f"color: {theme.Color.DARK_BROWN};")
+            message = ui.textarea().props('placeholder="Type your message here..." rows=5').classes('w-full px-4 py-2 border rounded').style('background-color: white;')
 
-            # Submit Button
-            ui.button('Send Message', on_click=lambda: ui.notify('Message Sent!')).classes('px-6 py-2 rounded-lg text-white').props(f'color=orange-8')
+            ui.button('Send Message', on_click=validate_and_send).classes('px-6 py-2 rounded-lg text-white').props(f'color=orange-8')
+
+
+
+
