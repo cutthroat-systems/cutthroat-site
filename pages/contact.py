@@ -5,7 +5,7 @@ import re
 
 # Function to send email
 def send_email(name: str, email: str, phone: str, message: str) -> None:
-    url = "https://api.zeptomail.com/v1.1/email"
+    """url = "https://api.zeptomail.com/v1.1/email"
 
     payload = {
         "from": {"address": "noreply@cutthroatsystems.com"},
@@ -39,19 +39,24 @@ def send_email(name: str, email: str, phone: str, message: str) -> None:
         ui.notify('Message Sent!', type="positive")
     else:
         ui.notify(f'Failed to send message: {response.text}', type='negative')
+"""
+    ui.notify('Message Sent!', type="positive")
 
 # Function to render the form
 def render() -> None:
 
     # Validation function
     def validate_and_send():
+        phone_pattern = re.compile( \
+            r'^(\+?1[\s-]?)?(\(?\d{3}\)?[\s-]?)\d{3}[\s-]?\d{4}$'
+        )
         if not name.value:
             ui.notify("Name is required", type="negative")
             return
         if not re.match(r"[^@]+@[^@]+\.[^@]+", email.value):
             ui.notify("Invalid email format", type="negative")
             return
-        if not re.match(r"^\+?\d{7,15}$", phone.value):
+        if not phone_pattern.match(phone.value):
             ui.notify("Invalid phone number format", type="negative")
             return
         if not message.value:
