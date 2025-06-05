@@ -17,9 +17,9 @@ class Color:
 
 
 class Logo:
-    LOGO = "static/img/logos/cutthroat.svg"
-    LOGO_NAME = "static/img/logos/cutthroat_name&logo.svg"
-    LOGO_NAME_long = "static/img/logos/cutthroat_name&logo_long.svg"
+    LOGO = "static/img/logo/cutthroat.svg"
+    LOGO_NAME = "static/img/logo/cutthroat_name&logo.svg"
+    LOGO_NAME_long = "static/img/logo/cutthroat_name&logo_long.svg"
 
 
 class Icon:
