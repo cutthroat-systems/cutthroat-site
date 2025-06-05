@@ -54,27 +54,12 @@ imglist = ["static/img/services/Hardware Design.jpg","static/img/services/Softwa
 
 
 def render() -> None:
-    with ui.column().classes('w-full mx-auto pt-24 pb-0 gap-4 items-center').props('id=about'):
-                
+    with ui.column().classes('w-full mx-auto pt-24 pb-0 gap-4 items-center').props('id=about').style("padding-top: 0;"):
         ui.image('static/img/services/TroutCard.png').style(
-            "width: 60%; height: 60%; object-fit: fill; margin: 0; padding: 0; display:"
-            )
-        
+            "width: 50%; height: 50%; object-fit: fill; margin: 0; padding: 0; display:"
+        )
         ui.label('Services Provided').classes('text-5xl italic font-bold text-center pb-4').style(f"color: {theme.Color.PARCHMENT};")
-        """
-        with ui.card().classes('rounded-2xl shadow-lg w-auto px-20 py-2 flex flex-col items-center text-center').style(f'background-color: {theme.Color.SOFT_ORANGE};'):
-            with ui.row().classes('w-full justify-center gap-3 flex-wrap'):
-                ui.image(theme.Icon.HARDWARE).props("fit=contain").classes(
-                                "w-16 h-16 service-icon"
-                            ).style("overflow: visible; object-fit: contain;")
-                ui.image(theme.Icon.SOFTWARE).props("fit=contain").classes(
-                                "w-16 h-16 service-icon"
-                            ).style("overflow: visible; object-fit: contain;")
-                ui.image(theme.Icon.INTEGRATION).props("fit=contain").classes(
-                                "w-16 h-16 service-icon"
-                            ).style("overflow: visible; object-fit: contain;")
-                """
-                           
+        
         ui.label(
             "At Cutthroat Systems, our team of exceptional engineers brings together expertise in software, mechanical, and aerospace engineering to tackle even the most complex challenges. "
             "We specialize in consulting, CAD design and prototyping, precision mechanical engineering, aerospace solutions, custom software development, and systems design for calibration and automation. "
@@ -85,20 +70,21 @@ def render() -> None:
             f"color: {theme.Color.PARCHMENT}; max-width: 120ch;"
         )
 
-        with ui.row().classes('w-full justify-center gap-3 flex-wrap'):
-            keys_list = list(services.keys())  # Get the keys for the columns
-            with ui.card().classes('rounded-2xl shadow-lg w-25% min-w-[150px] px-4 py-4 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300').style(f"background-color: {theme.Color.PARCHMENT};"):
-                for i, key in enumerate(keys_list):
-                    with ui.column().classes('w-full items-center text-left gap-2'):
-                        # Parallax Image
-                        with ui.element("q-parallax").props(f"src='{imglist[i]}' height='150' auto-width speed=30").style('background-position: bottom;'):
-                            with ui.card().classes('rounded-2xl shadow-lg w-auto px-2 py-2 flex flex-col items-center text-center').style(f'background-color: {theme.Color.SOFT_ORANGE};'):
-                                ui.label(key).classes('text-4xl italic font-bold').style(
-                                    f"color: {theme.Color.DARK_BROWN};"
-                                )
-                        ui.separator()
-                        with ui.column().classes('w-full text-left gap-2'):
-                            add_info(key)
+        # Create cards for each service category
+        for i, (category, items) in enumerate(services.items()):
+            with ui.card().classes('rounded-2xl shadow-lg w-4/5 px-6 py-4 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300').style(f'background-color: {theme.Color.PARCHMENT};'):
+                # Add a header card with a parallax image and category title
+                with ui.element("q-parallax").props(f"src='{imglist[i]}' height='150' auto-width speed=30").style('background-position: bottom;'):
+                    with ui.card().classes('rounded-2xl shadow-md w-full px-4 py-2 flex items-center justify-center').style(f'background-color: {theme.Color.SOFT_ORANGE};'):
+                        ui.label(category).classes('text-4xl italic font-bold').style(f"color: {theme.Color.DARK_BROWN};")
+                ui.separator()
+
+                # List all services under the category
+                for service in items:
+                    ui.label(service["title"]).classes('text-2xl text-left font-bold').style(f"color: {theme.Color.BURNT_ORANGE};")
+                    ui.label(service["description"]).classes('text-lg text-left font-medium').style(f"color: {theme.Color.DARK_BROWN};")
+                    ui.separator()
+
 
        
 

@@ -12,7 +12,7 @@ topBlurb = "\n".join([
 
 Pat_text = """Patrick is a seasoned project manager, analytics expert, and software developer with a unique blend of financial and technical expertise. He began his career managing a $500 million portfolio while working with leading lending institutions, including Blackstone, Wells Fargo, and Bank of America, where he developed predictive models to forecast loan performance and detect risks in complex financing operations.
 
-His transition into software development began with a breakthrough in gamification—designing a funding leaderboard that boosted productivity and morale. This sparked a passion for creating data-driven solutions to optimize workflows and enhance business performance.
+\n\nHis transition into software development began with a breakthrough in gamification—designing a funding leaderboard that boosted productivity and morale. This sparked a passion for creating data-driven solutions to optimize workflows and enhance business performance.
 
 Now leading financial strategy and software architecture at Cutthroat Systems, Patrick combines his deep analytical skills, business acumen, and software development expertise to deliver innovative engineering and software solutions. Currently pursuing a Master’s in Software Engineering, he bridges the gap between business, data, and technology to drive company success."""
 
@@ -23,12 +23,19 @@ people = [
             "name":"Jarred Druzynski",
             "title": "Production Design",
             "description": "Our engineers have combined decades of experience designing mechanical mechanisms within the industry.",
-            "icon":"static\img\headshots\JDHeadshot.jpg"
+            "icon":"static/img/headshots/JDHeadshot.jpg"
         },
         {
             "name":"Patrick Miller",
-            "description":Pat_text,
-            "icon":"static\img\headshots\PatHeadshot.jpg"
+            "title": "Business Analytics and Software Design",
+            "description": Pat_text,
+            "icon":"static/img/headshots/PatHeadshot.png"
+        },
+                {
+            "name":"Chase Hallahan",
+            "title": "",
+            "description": "",
+            "icon":"static/img/headshots/ChaseHeadshot.png"
         },
 ]
 
@@ -46,8 +53,6 @@ def makePerson(person:dict):
                     with ui.avatar().classes("flex items-center justify-center w-full h-auto"):
                         ui.image(person.get("icon","https://nicegui.io/logo_square.png"))
 
-                    
-
                 addVSep()
 
                 with ui.column().classes('w-1/2 items-center text-center'):
@@ -64,13 +69,12 @@ def makePerson(person:dict):
 def render() -> None:
     with ui.column().classes('w-full mx-auto pt-24 pb-0 gap-4 items-center').props(
         'id=about'
-    ):
+    ).style("padding: 5px;"):
         ui.label('About Our People').classes(
             'text-5xl italic font-bold text-center pb-4'
         ).style(f"color: {theme.Color.PARCHMENT};")
         ui.label(topBlurb).classes('text-lg text-center font-medium').style(
             f"color: {theme.Color.PARCHMENT}; max-width: 120ch;"
         )
-
         for person in people:
-             makePerson(person)
+            makePerson(person)
