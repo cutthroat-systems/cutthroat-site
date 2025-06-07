@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 from nicegui import app, ui
 
@@ -6,20 +6,19 @@ from components import footer, header
 
 
 class Color:
-
     DEEP_BROWN = "#2C1E1A"
     DARK_BROWN = "#201814"
     BURNT_ORANGE = "#e85e1c"
     LIGHT_SALMON = "#F9B78A"
-    TAN_YELLOW = "#F4B951"
+    TAN_YELLOW = "#F7D396"
     SOFT_ORANGE = "#E99356"
     PARCHMENT = "#F4E8DC"
 
 
 class Logo:
     LOGO = "static/img/logo/cutthroat.svg"
-    LOGO_NAME = "static/img/logo/cutthroat_namelogo.svg"
-    LOGO_NAME_long = "static/img/logo/cutthroat_namelogo_long.svg"
+    LOGO_FULL = "static/img/logo/cutthroat_logo.svg"
+    LOGO_LONG = "static/img/logo/cutthroat_logo_long.svg"
 
 
 class Icon:
@@ -28,25 +27,24 @@ class Icon:
     SOFTWARE = "static/img/icon/software.svg"
 
 
+class Github:
+    URL = "https://github.com/cutthroat-systems"
+
+
 # ---------------------
 # Global Page Styling
 # ---------------------
-def apply():
+static_path = Path(__file__).parent.resolve() / "static"
 
-    app.add_static_files("/static", os.path.join(os.path.dirname(__file__), "static"))
-    ui.add_head_html(
-        """
-        <link href="static/handwrite.css" type="text/css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Titillium Web', sans-serif;
-            }
-            .font-titillium {
-                font-family: 'Titillium Web', sans-serif;
-            }
-        </style>
-    """
+
+def apply():
+    app.add_static_files("/static", static_path)
+    for path in static_path.glob("css/*.css"):
+        ui.add_css(path)
+
+    # Adds above class colors to NiceGUI as Quasar colors (BURNT_ORANGE -> burnt-orange)
+    ui.colors(
+        **{name.lower(): getattr(Color, name) for name in dir(Color) if name.isupper()}
     )
 
     ui.query("body").style(

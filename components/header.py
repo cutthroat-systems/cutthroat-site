@@ -5,7 +5,7 @@ import theme
 
 def render():
     with ui.header().classes("w-full h-[15vh] min-h-[4rem]").style(
-        f"background-color: {theme.Color.PARCHMENT}; border-bottom: 5px solid {theme.Color.BURNT_ORANGE};"
+        f"background-color: {theme.Color.PARCHMENT}; border-bottom: 7.5px solid {theme.Color.BURNT_ORANGE};"
     ):
         with ui.row().classes(
             "h-full w-full justify-between items-center flex-nowrap overflow-hidden"
@@ -17,7 +17,7 @@ def render():
                 ):
                     ui.html(
                         f"""
-                        <img src="{theme.Logo.LOGO_NAME}" alt="Cutthroat Logo" title="Cutthroat Systems"
+                        <img src="{theme.Logo.LOGO_FULL}" alt="Cutthroat Logo" title="Cutthroat Systems"
                             style="height: 100%; width: auto; max-height: 11vh; object-fit: contain; display: block;" />
                     """
                     )

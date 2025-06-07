@@ -1,7 +1,9 @@
-from nicegui import ui
-import requests
-import theme
 import re
+
+from nicegui import ui
+
+import theme
+
 
 # Function to send email
 def send_email(name: str, email: str, phone: str, message: str) -> None:
@@ -27,7 +29,7 @@ def send_email(name: str, email: str, phone: str, message: str) -> None:
             f"</div>"
         )
     }
-        
+
     headers = {
         'accept': "application/json",
         'content-type': "application/json",
@@ -39,15 +41,16 @@ def send_email(name: str, email: str, phone: str, message: str) -> None:
         ui.notify('Message Sent!', type="positive")
     else:
         ui.notify(f'Failed to send message: {response.text}', type='negative')
-"""
+    """
     ui.notify('Message Sent!', type="positive")
+
 
 # Function to render the form
 def render() -> None:
 
     # Validation function
     def validate_and_send():
-        phone_pattern = re.compile( \
+        phone_pattern = re.compile(
             r'^(\+?1[\s-]?)?(\(?\d{3}\)?[\s-]?)\d{3}[\s-]?\d{4}$'
         )
         if not name.value:
@@ -65,28 +68,62 @@ def render() -> None:
         send_email(name.value, email.value, phone.value, message.value)
 
     # UI rendering
-    with ui.column().classes('w-full mx-auto pt-24 pb-16 gap-8 items-center').props('id=contact-us').style("padding: 5px"):
-        ui.label('Contact Us').classes('text-5xl italic font-bold text-center').style(f"color: {theme.Color.PARCHMENT};")
+    with ui.column().classes('w-full mx-auto pt-24 pb-16 gap-8 items-center').props(
+        'id=contact-us'
+    ).style("padding: 5px"):
+        ui.label('Contact Us').classes('text-5xl italic font-bold text-center').style(
+            f"color: {theme.Color.SOFT_ORANGE};"
+        )
         ui.label(
             "We'd love to hear from you! Whether you have questions, feedback, or inquiries about our services, "
             "our team is here to help. Fill out the form below, and we’ll get back to you as soon as possible."
-        ).classes('text-lg text-center font-medium').style(f"color: {theme.Color.PARCHMENT}; max-width: 80ch;")
-        
-        with ui.card().classes('rounded-2xl shadow-lg w-2/3 px-8 py-6 flex flex-col items-center gap-4').style(f"background-color: {theme.Color.PARCHMENT};"):
-            ui.label('Your Name').classes('text-left font-bold').style(f"color: {theme.Color.DARK_BROWN};")
-            name = ui.input().props('placeholder="Enter your full name"').classes('w-full px-4 py-2 border rounded').style('background-color: white;')
+        ).classes('text-lg text-center font-medium').style(
+            f"color: {theme.Color.PARCHMENT}; max-width: 80ch;"
+        )
 
-            ui.label('Your Email').classes('text-left font-bold').style(f"color: {theme.Color.DARK_BROWN};")
-            email = ui.input().props('placeholder="Enter your email address"').classes('w-full px-4 py-2 border rounded').style('background-color: white;')
+        with ui.card().classes(
+            'rounded-2xl shadow-lg w-2/3 px-8 py-6 flex flex-col items-start gap-4'
+        ).style(f"background-color: {theme.Color.PARCHMENT};"):
+            ui.label('Name').classes('font-bold text-xl').style(
+                f"color: {theme.Color.DARK_BROWN};"
+            )
+            name = (
+                ui.input()
+                .props('placeholder="Enter your full name"')
+                .classes('w-full px-4 py-2 border rounded')
+                .style('background-color: white;')
+            )
 
-            ui.label('Your Phone Number').classes('text-left font-bold').style(f"color: {theme.Color.DARK_BROWN};")
-            phone = ui.input().props('placeholder="Enter your phone number"').classes('w-full px-4 py-2 border rounded').style('background-color: white;')
+            ui.label('Email').classes('font-bold text-xl').style(
+                f"color: {theme.Color.DARK_BROWN};"
+            )
+            email = (
+                ui.input()
+                .props('placeholder="Enter your email address"')
+                .classes('w-full px-4 py-2 border rounded')
+                .style('background-color: white;')
+            )
 
-            ui.label('Your Message').classes('text-left font-bold').style(f"color: {theme.Color.DARK_BROWN};")
-            message = ui.textarea().props('placeholder="Type your message here..." rows=5').classes('w-full px-4 py-2 border rounded').style('background-color: white;')
+            ui.label('Phone Number').classes('font-bold text-xl').style(
+                f"color: {theme.Color.DARK_BROWN};"
+            )
+            phone = (
+                ui.input()
+                .props('placeholder="Enter your phone number"')
+                .classes('w-full px-4 py-2 border rounded')
+                .style('background-color: white;')
+            )
 
-            ui.button('Send Message', on_click=validate_and_send).classes('px-6 py-2 rounded-lg text-white').props(f'color=orange-8')
+            ui.label('Message').classes('font-bold text-xl').style(
+                f"color: {theme.Color.DARK_BROWN};"
+            )
+            message = (
+                ui.textarea()
+                .props('placeholder="Type your message here..." rows=5')
+                .classes('w-full px-4 py-2 border rounded')
+                .style('background-color: white;')
+            )
 
-
-
-
+            ui.button('Send Message', on_click=validate_and_send).classes(
+                'px-6 py-2 rounded-lg text-white'
+            ).props('color=burnt-orange')

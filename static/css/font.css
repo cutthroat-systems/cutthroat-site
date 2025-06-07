@@ -1,0 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap");
+
+html, body {
+  font-family: "Titillium Web", sans-serif !important;
+}
+.q-layout, .q-page {
+  font-family: inherit !important;
+}
