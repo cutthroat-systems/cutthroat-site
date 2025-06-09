@@ -56,7 +56,7 @@ imglist = ["static/img/services/Hardware Design.jpg","static/img/services/Softwa
 def render() -> None:
     with ui.column().classes('w-full mx-auto pt-24 pb-0 gap-4 items-center').props('id=about').style("padding-top: 0;"):
         ui.image('static/img/services/TroutCard.png').style(
-            "width: 50%; height: 50%; object-fit: fill; margin: 0; padding: 0; display:"
+            "width: 200px; object-fit: fill; margin: 0; padding: 0; display:"
         )
         ui.label('Services Provided').classes('text-5xl italic font-bold text-center pb-4').style(f"color: {theme.Color.PARCHMENT};")
         
@@ -75,7 +75,7 @@ def render() -> None:
             with ui.card().classes('rounded-2xl shadow-lg w-4/5 px-6 py-4 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300').style(f'background-color: {theme.Color.PARCHMENT};'):
                 # Add a header card with a parallax image and category title
                 with ui.element("q-parallax").props(f"src='{imglist[i]}' height='150' auto-width speed=30").style('background-position: bottom;'):
-                    with ui.card().classes('rounded-2xl shadow-md w-full px-4 py-2 flex items-center justify-center').style(f'background-color: {theme.Color.SOFT_ORANGE};'):
+                    with ui.card().classes('rounded-2xl shadow-md w-full px-4 py-2 flex items-center justify-center').style(f'background-color: {theme.Color.SOFT_ORANGE}; width: fit-content;'):
                         ui.label(category).classes('text-4xl italic font-bold').style(f"color: {theme.Color.DARK_BROWN};")
                 ui.separator()
 
@@ -91,7 +91,7 @@ def render() -> None:
 def add_info(key: str) -> None:
     for i, service in enumerate(services[key]):
         ui.label(service["title"]).classes('text-2xl text-left font-bold').style(f"color: {theme.Color.BURNT_ORANGE};")
-        ui.label(service["description"]).classes('text-lg text-left font-medium').style(f"color: {theme.Color.DARK_BROWN};")
+        ui.label(service["description"]).classes('text-lg text-left font-medium').style(f"color: {theme.Color.DARK_BROWN}; ")
         if (i != len(services) - 1):
             ui.separator()
 
