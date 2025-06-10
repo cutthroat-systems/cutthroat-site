@@ -4,7 +4,7 @@ import theme
 
 
 def render():
-    with ui.header().classes("w-full h-[15vh] min-h-[4rem]").style(
+    with ui.header().classes("w-full h-[15vh] min-h-[4rem] p-0 m-0").style(
         f"background-color: {theme.Color.PARCHMENT}; border-bottom: 7.5px solid {theme.Color.BURNT_ORANGE};"
     ):
         with ui.row().classes(

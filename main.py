@@ -30,7 +30,8 @@ def show_contact():
 
 ui.run(
     reload=True,
+    uvicorn_reload_includes="*.py, *.html, *.js, *.css",
     title="Cutthroat Systems",
     port=8081,
-    uvicorn_reload_includes="*.py, *.html, *.js, *.css",
+    favicon=theme.Logo.LOGO,
 )
