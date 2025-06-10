@@ -43,14 +43,14 @@ def render():
         with ui.row().classes("flex-wrap justify-center gap-8"):
             service_data = [
                 {
-                    "title": "Hardware Design",
-                    "desc": "Mechanical and electrical systems designed for real-world performance and reliability.",
-                    "icon": theme.Icon.HARDWARE,
-                },
-                {
                     "title": "Software Engineering",
                     "desc": "Custom software and embedded solutions that bring your product, process, or system to life.",
                     "icon": theme.Icon.SOFTWARE,
+                },
+                {
+                    "title": "Hardware Design",
+                    "desc": "Mechanical and electrical systems designed for real-world performance and reliability.",
+                    "icon": theme.Icon.HARDWARE,
                 },
                 {
                     "title": "System Integration",
@@ -60,8 +60,12 @@ def render():
             ]
 
             for service in service_data:
-                with ui.card().classes("rounded-2xl shadow-lg").style(
+                with ui.card().classes(
+                    "rounded-2xl shadow-lg transform transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
+                ).style(
                     f"background-color: {theme.Color.PARCHMENT}; width: 21vw; min-width: 250px;"
+                ).on(
+                    "click", lambda: ui.navigate.to("/services")
                 ):
                     with ui.column().classes("items-center p-6 gap-4").style(
                         f"color: {theme.Color.DARK_BROWN};"

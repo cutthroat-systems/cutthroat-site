@@ -2,12 +2,6 @@ from nicegui import ui
 
 import theme
 
-topBlurb = (
-    "Cutthroat Systems started with a small team of engineers united by a passion for solving automation challenges. "
-    "We create custom solutions—from CAD design and prototyping to full hardware-software integration—that streamline calibration, testing, and manufacturing. "
-    "Our hands-on approach and software-driven workflows help businesses simplify complexity and boost efficiency."
-)
-
 people = [
     {
         "name": "Patrick Miller",
@@ -18,7 +12,7 @@ people = [
     {
         "name": "Jarred Druzynski",
         "title": "Software and Integration Engineer",
-        "description": "Our engineers have combined decades of experience designing mechanical mechanisms within the industry.",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nibh non consequat aliquet, nisi urna tincidunt lectus, ac sollicitudin enim ipsum id lorem. Fusce quis vulputate felis. Sed at vestibulum est. Morbi pretium, orci nec vehicula facilisis, purus lacus ultricies sapien, id egestas ipsum lacus eu orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus sit amet velit et sem dapibus efficitur. Integer vitae ex eu dolor fringilla efficitur. Vivamus finibus, eros sed aliquet consequat, dolor augue luctus lacus, sed sodales justo purus at neque. Donec a turpis vitae massa elementum tempus. Etiam sit amet lectus vitae urna vehicula imperdiet. Nullam ut justo sit amet urna dignissim malesuada non nec mi. Suspendisse potenti. Ut tristique vestibulum lectus vel blandit.",
         "icon": "static/img/headshots/JDHeadshot.jpg",
     },
     {
@@ -29,46 +23,39 @@ people = [
     },
 ]
 
-addVSep = (
-    lambda: ui.separator()
-    .props("vertical")
-    .style('border-left: 4px solid var(--theme-color-soft-orange); height: 100%;')
-)
-
-
-def makePerson(person: dict):
-    with ui.card().classes('rounded-2xl shadow-sm w-full px-4 py-8 h-auto').style(
-        f'background-color: {theme.Color.PARCHMENT};'
-    ):
-        with ui.row().classes('w-full justify-center gap-8 items-stretch'):
-            with ui.column().classes('w-1/3 items-center'):
-                with ui.avatar(color="burnt-orange", size="28rem"):
-                    ui.image(person["icon"])
-
-            addVSep()
-
-            with ui.column().classes('w-1/2 items-center text-center'):
-                ui.label(person.get("name", "Name")).classes(
-                    'text-4xl text-left font-bold'
-                ).style(f"color: {theme.Color.DARK_BROWN}")
-                ui.label(person.get("title", "Title")).classes(
-                    'text-3xl text-left italic font-bold'
-                ).style(f"color: {theme.Color.BURNT_ORANGE};")
-                ui.separator()
-                ui.label(person.get("description", "Description")).classes(
-                    'text-lg text-left font-medium'
-                )
-
 
 def render() -> None:
-    with ui.column().classes('w-full mx-auto pt-24 pb-0 gap-4 items-center').props(
-        'id=about'
-    ).style("padding: 5px;"):
+    with ui.column().classes('w-full mx-auto pt-24 pb-0 gap-4').props('id=about').style(
+        "padding: 5px;"
+    ):
         ui.label('Meet Our Team').classes(
-            'text-5xl italic font-bold text-center pb-4'
+            'text-7xl italic font-bold self-center pb-4'
         ).style(f"color: {theme.Color.SOFT_ORANGE};")
-        # ui.label(topBlurb).classes('text-lg text-center font-medium').style(
-        #     f"color: {theme.Color.PARCHMENT}; max-width: 120ch;"
-        # )
-        for person in people:
-            makePerson(person)
+
+        for i, person in enumerate(people):
+            align = "self-start" if i % 2 == 0 else "self-end"
+            direction = "flex-row" if i % 2 == 0 else "flex-row-reverse"
+
+            with ui.card().classes(
+                f'rounded-2xl shadow-sm w-[65vw] h-auto px-8 py-8 mx-[5vw] {align} '
+                f'flex {direction} gap-8 items-stretch'
+            ).style(f'background-color: {theme.Color.PARCHMENT};'):
+                # Headshot image wrapped in avatar
+                with ui.column().classes('w-1/4 justify-center items-center'):
+                    with ui.avatar(color="burnt-orange").classes("w-full h-auto"):
+                        ui.image(person["icon"])
+                # Right side text
+                with ui.column().classes('flex-1 items-center px-4'):
+                    # Name and title
+                    ui.label(person.get("name", "Name")).classes(
+                        'text-4xl font-bold'
+                    ).style(f"color: {theme.Color.DARK_BROWN}")
+                    ui.label(person.get("title", "Title")).classes(
+                        'text-3xl italic font-bold'
+                    ).style(f"color: {theme.Color.BURNT_ORANGE};")
+                    # Horizontal separator
+                    ui.separator()
+                    # Bio
+                    ui.label(person.get("description", "Description")).classes(
+                        'text-lg text-justify indent-12 font-medium'
+                    )

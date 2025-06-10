@@ -4,21 +4,6 @@ import theme
 
 services = {
     # Column 1 -----------------------------------------------
-    "Hardware Design": [
-        {
-            "title": "Production Design",
-            "description": "We design robust, scalable mechanical systems, creating detailed CAD models and tolerance analyses to ensure optimal manufacturability and reliability in high-volume production. Our iterative approach includes rapid prototyping feedback loops, DFMEA reviews, and close collaboration to minimize cycle time and reduce costs.",
-        },
-        {
-            "title": "Thermal Engineering Consultation",
-            "description": "We conduct CFD and thermal analyses to optimize cooling and ensure component reliability under extreme conditions, validating models with testing and integrating real-time monitoring for robust performance.",
-        },
-        {
-            "title": "Rapid Prototyping & Manufacturing Consultation",
-            "description": "We provide rapid-prototyping and manufacturability consulting—choosing materials and processes to speed development, coordinating vendors, and planning seamless transitions to full-scale production.",
-        },
-    ],
-    # Column 2 -----------------------------------------------
     "Software Engineering": [
         {
             "title": "Data Visualization and Analytics",
@@ -31,6 +16,21 @@ services = {
         {
             "title": "Custom Software Development",
             "description": "Craft custom full-stack software solutions—from architecture design through deployment—using agile processes, automated testing, and modular code to meet your business goals. We provide clear documentation, user-training sessions, and ongoing support contracts to ensure smooth adoption and continuous improvement.",
+        },
+    ],
+    # Column 2 -----------------------------------------------
+    "Hardware Design": [
+        {
+            "title": "Production Design",
+            "description": "We design robust, scalable mechanical systems, creating detailed CAD models and tolerance analyses to ensure optimal manufacturability and reliability in high-volume production. Our iterative approach includes rapid prototyping feedback loops, DFMEA reviews, and close collaboration to minimize cycle time and reduce costs.",
+        },
+        {
+            "title": "Rapid Prototyping & Manufacturing Consultation",
+            "description": "We provide rapid-prototyping and manufacturability consulting—choosing materials and processes to speed development, coordinating vendors, and planning seamless transitions to full-scale production.",
+        },
+        {
+            "title": "Thermal & Laboratory Analyses Consultation",
+            "description": "We conduct CFD and thermal analyses to optimize cooling and ensure component reliability under extreme conditions, validating models with testing and integrating real-time monitoring for robust performance.",
         },
     ],
     # Column 3 -----------------------------------------------
@@ -52,8 +52,8 @@ services = {
 
 
 imglist = [
-    "static/img/services/Hardware Design.jpg",
     "static/img/services/Software Engineering.jpg",
+    "static/img/services/Hardware Design.jpg",
     "static/img/services/System Integration.jpg",
 ]
 
@@ -79,30 +79,55 @@ def render() -> None:
             f"color: {theme.Color.PARCHMENT}; max-width: 120ch;"
         )
 
-        # Create cards for each service category
         for i, (category, items) in enumerate(services.items()):
+            img = imglist[i]
             with ui.card().classes(
-                'rounded-2xl shadow-lg w-4/5 px-6 py-4 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300'
+                'parallax-card rounded-2xl shadow-lg w-4/5 px-6 py-4 '
+                'flex flex-col items-center text-center '
+                'hover:shadow-2xl transition-shadow duration-300'
             ).style(f'background-color: {theme.Color.PARCHMENT};'):
-                # Add a header card with a parallax image and category title
-                with ui.element("q-parallax").props(
-                    f"src='{imglist[i]}' height='150' auto-width speed=30"
-                ).style('background-position: bottom;'):
-                    with ui.card().classes(
-                        'rounded-2xl shadow-md w-full px-4 py-2 flex items-center justify-center'
-                    ).style(
-                        f'background-color: {theme.Color.SOFT_ORANGE}; width: fit-content;'
-                    ):
-                        ui.label(category).classes('text-4xl italic font-bold').style(
-                            f"color: {theme.Color.DARK_BROWN};"
-                        )
 
-                # List all services under the category
+                # Parallax header container
+                with ui.element('div').classes('parallax-header').style(
+                    f"background-image: url('{img}');"
+                ):
+                    ui.label(category).classes('category-title')
+
+                # Content below the header
                 for service in items:
-                    ui.label(service["title"]).classes(
+                    ui.label(service['title']).classes(
                         'text-2xl text-left font-bold'
-                    ).style(f"color: {theme.Color.BURNT_ORANGE};")
-                    ui.label(service["description"]).classes(
+                    ).style(f'color: {theme.Color.BURNT_ORANGE};')
+                    ui.label(service['description']).classes(
                         'text-lg text-left font-medium'
-                    ).style(f"color: {theme.Color.DARK_BROWN};")
+                    ).style(f'color: {theme.Color.DARK_BROWN};')
                     ui.separator()
+
+        # # Create cards for each service category
+        # for i, (category, items) in enumerate(services.items()):
+        #     with ui.card().classes(
+        #         'rounded-2xl shadow-lg w-4/5 px-6 py-4 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300'
+        #     ).style(f'background-color: {theme.Color.PARCHMENT};'):
+
+        #         # Add a header card with a parallax image and category title
+        #         with ui.element("q-parallax").props(
+        #             f"src='{imglist[i]}' height='150' auto-width speed=30"
+        #         ).style('background-position: bottom;'):
+        #             with ui.card().classes(
+        #                 'rounded-2xl shadow-md w-full px-4 py-2 flex items-center justify-center'
+        #             ).style(
+        #                 f'background-color: {theme.Color.SOFT_ORANGE}; width: fit-content;'
+        #             ):
+        #                 ui.label(category).classes('text-4xl italic font-bold').style(
+        #                     f"color: {theme.Color.DARK_BROWN};"
+        #                 )
+
+        #         # List all services under the category
+        #         for service in items:
+        #             ui.label(service["title"]).classes(
+        #                 'text-2xl text-left font-bold'
+        #             ).style(f"color: {theme.Color.BURNT_ORANGE};")
+        #             ui.label(service["description"]).classes(
+        #                 'text-lg text-left font-medium'
+        #             ).style(f"color: {theme.Color.DARK_BROWN};")
+        #             ui.separator()
