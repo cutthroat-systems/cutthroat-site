@@ -7,59 +7,68 @@ services = {
     "Hardware Design": [
         {
             "title": "Production Design",
-            "description": "Our engineers leverage decades of experience to design mechanical mechanisms tailored to meet industry standards. We focus on creating robust, scalable, and efficient solutions for production.",
-            "icon": "ree",
+            "description": "We design robust, scalable mechanical systems, creating detailed CAD models and tolerance analyses to ensure optimal manufacturability and reliability in high-volume production. Our iterative approach includes rapid prototyping feedback loops, DFMEA reviews, and close collaboration to minimize cycle time and reduce costs.",
         },
         {
             "title": "Thermal Engineering Consultation",
-            "description": "Optimize your systems with expert thermal analysis and engineering. From heat dissipation to thermal management, we ensure peak performance under demanding conditions.",
-            "icon": "ree",
+            "description": "We conduct CFD and thermal analyses to optimize cooling and ensure component reliability under extreme conditions, validating models with testing and integrating real-time monitoring for robust performance.",
         },
         {
-            "title": "Rapid Protyping & Manufacturing Consultation",
-            "description": "Accelerate your product development with our rapid prototyping services. We provide guidance on material selection, manufacturing techniques, and optimization for production.",
-            "icon": "ree",
+            "title": "Rapid Prototyping & Manufacturing Consultation",
+            "description": "We provide rapid-prototyping and manufacturability consulting—choosing materials and processes to speed development, coordinating vendors, and planning seamless transitions to full-scale production.",
         },
     ],
     # Column 2 -----------------------------------------------
     "Software Engineering": [
         {
             "title": "Data Visualization and Analytics",
-            "description": "Transform raw data into actionable insights with our advanced visualization tools. We specialize in creating intuitive dashboards and analytics systems to empower decision-making.",
-            "icon": "ree",
+            "description": "Build interactive dashboards and analytics pipelines that transform raw data into actionable insights, empowering stakeholders with real-time metrics and trend analysis. We integrate data sources, implement drill-down reporting, and optimize performance for both desktop and mobile viewing, backed by robust data governance practices.",
         },
         {
             "title": "Integrated Software & Low-level Programming",
-            "description": "Our expertise includes firmware development, system integration, and low-level programming to ensure seamless operation and compatibility with hardware.",
-            "icon": "ree",
+            "description": "Develop firmware, device drivers, and embedded software to ensure seamless hardware integration, deterministic performance, and reliable operation in mission-critical systems. We follow strict coding standards, implement safety checks, and automate testing and deployment through CI/CD pipelines to maintain code quality.",
         },
         {
-            "title": "Custom Software Developement", 
-            "description": "From concept to deployment, we develop tailored software solutions designed to address unique business challenges and enhance operational efficiency.", 
-            "icon": "ree"},
+            "title": "Custom Software Development",
+            "description": "Craft custom full-stack software solutions—from architecture design through deployment—using agile processes, automated testing, and modular code to meet your business goals. We provide clear documentation, user-training sessions, and ongoing support contracts to ensure smooth adoption and continuous improvement.",
+        },
     ],
     # Column 3 -----------------------------------------------
     "System Integration": [
         {
             "title": "Precision and Scientific Control Systems",
-            "description": "Specializing in high-accuracy control systems, we design and integrate solutions for scientific and industrial applications that require uncompromising precision.",
-            "icon": "ree",
+            "description": "Design and integrate high-precision control systems with advanced sensor feedback and closed-loop algorithms, delivering sub-micron accuracy for scientific and industrial applications. Our solutions comply with regulatory standards, include full traceability features, and support remote monitoring and diagnostics.",
         },
-        {"title": "Calibration Systems and Equipment Automations", "description": "Streamline your system processes with our advanced automation solutions. We specialize in developing systems that seamlessly integrate with your equipment, enabling automated data collection, precision adjustments, and comprehensive reporting. Our solutions reduce manual intervention, enhance accuracy, and save valuable time.", "icon": "ree"},
-        {"title": "Deployment and Training", "description": "Ensure smooth transitions and effective system use with our comprehensive deployment and training services. We provide the tools and knowledge your team needs to succeed.", "icon": "ree"},
+        {
+            "title": "Calibration Systems and Equipment Automations",
+            "description": "Automate calibration workflows with custom rigs, automated measurement routines, and real-time data logging to enhance accuracy, reduce manual steps, and speed up results. We implement audit-ready reporting, remote calibration capabilities, and alerting mechanisms to maintain compliance and uptime.",
+        },
+        {
+            "title": "Deployment and Training",
+            "description": "Deliver turnkey deployment and hands-on training—from installation to best practices—to ensure your team can effectively operate, maintain, and scale the system. We provide tailored training materials, follow-up coaching, and performance assessments to guarantee long-term success.",
+        },
     ],
 }
 
-imglist = ["static/img/services/Hardware Design.jpg","static/img/services/Software Engineering.jpg","static/img/services/System Integration.jpg"]
+
+imglist = [
+    "static/img/services/Hardware Design.jpg",
+    "static/img/services/Software Engineering.jpg",
+    "static/img/services/System Integration.jpg",
+]
 
 
 def render() -> None:
-    with ui.column().classes('w-full mx-auto pt-24 pb-0 gap-4 items-center').props('id=about').style("padding-top: 0;"):
+    with ui.column().classes('w-full mx-auto pt-24 pb-0 gap-4 items-center').props(
+        'id=about'
+    ).style("padding-top: 0;"):
         ui.image('static/img/services/TroutCard.png').style(
-            "width: 200px; object-fit: fill; margin: 0; padding: 0; display:"
+            "width: 275px; object-fit: fill; margin: 0; padding: 0; display:"
         )
-        ui.label('Services Provided').classes('text-5xl italic font-bold text-center pb-4').style(f"color: {theme.Color.PARCHMENT};")
-        
+        ui.label('Services Provided').classes(
+            'text-5xl italic font-bold text-center pb-4'
+        ).style(f"color: {theme.Color.SOFT_ORANGE};")
+
         ui.label(
             "At Cutthroat Systems, our team of exceptional engineers brings together expertise in software, mechanical, and aerospace engineering to tackle even the most complex challenges. "
             "We specialize in consulting, CAD design and prototyping, precision mechanical engineering, aerospace solutions, custom software development, and systems design for calibration and automation. "
@@ -72,36 +81,28 @@ def render() -> None:
 
         # Create cards for each service category
         for i, (category, items) in enumerate(services.items()):
-            with ui.card().classes('rounded-2xl shadow-lg w-4/5 px-6 py-4 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300').style(f'background-color: {theme.Color.PARCHMENT};'):
+            with ui.card().classes(
+                'rounded-2xl shadow-lg w-4/5 px-6 py-4 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300'
+            ).style(f'background-color: {theme.Color.PARCHMENT};'):
                 # Add a header card with a parallax image and category title
-                with ui.element("q-parallax").props(f"src='{imglist[i]}' height='150' auto-width speed=30").style('background-position: bottom;'):
-                    with ui.card().classes('rounded-2xl shadow-md w-full px-4 py-2 flex items-center justify-center').style(f'background-color: {theme.Color.SOFT_ORANGE}; width: fit-content;'):
-                        ui.label(category).classes('text-4xl italic font-bold').style(f"color: {theme.Color.DARK_BROWN};")
-                ui.separator()
+                with ui.element("q-parallax").props(
+                    f"src='{imglist[i]}' height='150' auto-width speed=30"
+                ).style('background-position: bottom;'):
+                    with ui.card().classes(
+                        'rounded-2xl shadow-md w-full px-4 py-2 flex items-center justify-center'
+                    ).style(
+                        f'background-color: {theme.Color.SOFT_ORANGE}; width: fit-content;'
+                    ):
+                        ui.label(category).classes('text-4xl italic font-bold').style(
+                            f"color: {theme.Color.DARK_BROWN};"
+                        )
 
                 # List all services under the category
                 for service in items:
-                    ui.label(service["title"]).classes('text-2xl text-left font-bold').style(f"color: {theme.Color.BURNT_ORANGE};")
-                    ui.label(service["description"]).classes('text-lg text-left font-medium').style(f"color: {theme.Color.DARK_BROWN};")
+                    ui.label(service["title"]).classes(
+                        'text-2xl text-left font-bold'
+                    ).style(f"color: {theme.Color.BURNT_ORANGE};")
+                    ui.label(service["description"]).classes(
+                        'text-lg text-left font-medium'
+                    ).style(f"color: {theme.Color.DARK_BROWN};")
                     ui.separator()
-
-
-       
-
-def add_info(key: str) -> None:
-    for i, service in enumerate(services[key]):
-        ui.label(service["title"]).classes('text-2xl text-left font-bold').style(f"color: {theme.Color.BURNT_ORANGE};")
-        ui.label(service["description"]).classes('text-lg text-left font-medium').style(f"color: {theme.Color.DARK_BROWN}; ")
-        if (i != len(services) - 1):
-            ui.separator()
-
-    """def clicked(key : str ) -> None: #Function to populate screen w/ button info
-        right_column.clear()
-
-        for service in services[key]:
-            with right_column:
-                with ui.card(align_items="baseline").classes(f'rounded-2xl shadow-lg').style(f'background-color: {theme.Color.PARCHMENT}; width: 30vw; min-width: 200px;'):
-                    with ui.().classes('w-full items-center'):
-                        ui.labelcolumn(service["title"]).classes('text-3xl text-center font-bold')
-                    with ui.column(align_items="start").classes('w-full mx-auto pt-0 pb-0 gap-1 items-left'):
-                        ui.label(service["description"]).classes('text-lg text-left font-medium')"""

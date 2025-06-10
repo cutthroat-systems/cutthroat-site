@@ -88,45 +88,48 @@ def render():
             {
                 "icon": "groups",
                 "title": "Initial Consultation",
-                "desc": "During this phase, we collaborate closely with your leadership and stakeholders to deeply understand your strategic objectives, current workflows, and pain points. We conduct structured interviews, facilitate workshops, and document detailed requirements to ensure alignment on project goals and success metrics.",
+                "desc": "During this phase, we collaborate closely with your leadership and stakeholders to deeply understand your strategic objectives, current workflows, and pain points. We conduct structured interviews, facilitate workshops, map business processes, and document detailed requirements, as well as evaluate stakeholder feedback and identify hidden inefficiencies to ensure comprehensive alignment before moving into planning.",
             },
             {
                 "icon": "description",
                 "title": "Proposal & Agreement",
-                "desc": "In this stage, we craft a comprehensive proposal tailored to your needs, outlining scope, deliverables, timelines, and cost estimates in detail. Once reviewed, we refine terms, secure approvals, and formalize the partnership—incorporating risk assessments and milestone planning to set clear expectations—enabling a smooth transition into project execution.",
+                "desc": "In this stage, we craft a comprehensive proposal tailored to your needs, outlining scope, deliverables, timelines, resource allocations, and cost estimates in granular detail. We refine terms, secure stakeholder approvals, formalize the statement of work with clear milestones, and incorporate regulatory requirements and risk assessments to ensure robust governance and predictable outcomes.",
             },
             {
                 "icon": "search",
                 "title": "Research & Discovery",
-                "desc": "Our team performs in-depth analysis of your existing systems, gathering quantitative and qualitative data through surveys, logs, and stakeholder interviews. We map current architectures, identify technical constraints, assess integration points, and deliver a comprehensive discovery report with actionable insights to guide informed design decisions.",
+                "desc": "Our team conducts an exhaustive technical assessment, analyzing your existing systems and infrastructure, collecting both quantitative and qualitative data through logs, performance metrics, security audits, and stakeholder interviews. We map current architectures, identify integrations, compliance constraints, and deliver a detailed discovery report with prioritized recommendations and risk mitigation strategies.",
             },
             {
                 "icon": "engineering",
                 "title": "Design & Prototyping",
-                "desc": "Leveraging the insights gained, we create prototypes, wireframes, and proof-of-concept models to validate key features and user flows. Through iterative feedback loops, technical feasibility reviews, and usability testing, we refine designs to meet functional requirements, address performance considerations, and provide an intuitive experience before full implementation.",
+                "desc": "Leveraging insights from our discovery phase, we develop design artifacts including interactive prototypes, high-fidelity wireframes, and proof-of-concept models to validate core functionalities and user workflows. Through iterative feedback cycles, feasibility reviews, and usability testing sessions, we refine each design to balance performance, accessibility, and maintainability prior to full-scale development.",
             },
             {
                 "icon": "check_circle",
                 "title": "Advisory & Delivery",
-                "desc": "During development, we build and integrate robust, scalable solutions aligned with your architecture and quality standards. We provide ongoing technical guidance, conduct thorough code reviews, perform deployment planning, and facilitate knowledge transfer sessions, ensuring smooth delivery and empowering your team to maintain and extend the system effectively.",
+                "desc": "During delivery, we implement and integrate robust, scalable solutions that adhere to your architectural principles and quality standards. We provide ongoing technical guidance, conduct rigorous code reviews and automated testing, perform deployment and rollback planning, and facilitate comprehensive knowledge transfer sessions to empower your team with best practices and operational readiness.",
             },
             {
                 "icon": "handshake",
                 "title": "Ongoing Support",
-                "desc": "After launch, we continue to support your solution through proactive monitoring, performance optimization, and maintenance under agreed SLAs. Our team offers training, periodic updates, rapid issue resolution, and enhancement services, ensuring the system evolves with your business needs and that you maximize long-term ROI.",
+                "desc": "After launch, we offer continuous support and maintenance to ensure optimal performance, reliability, and security under agreed service-level agreements. Our team conducts proactive monitoring, performance tuning, security updates, and rapid incident resolution. We also provide strategic recommendations, roadmap planning, and user adoption assistance to keep your solution evolving smoothly with your business objectives.",
             },
         ]
 
         with ui.stepper().props('horizontal alternative-labels').classes(
-            'rounded-2xl w-[52vw]'
+            'rounded-2xl w-[62vw]'
         ).style(f"background-color: {theme.Color.PARCHMENT};") as stepper:
             for step in steps:
                 with ui.step(step["title"], step["title"], icon=step["icon"]).props(
-                    "active-color=burnt-orange done-color=soft-orange"
+                    "active-color=burnt-orange done-color=soft-orange header-nav=true"
                 ):
-                    ui.label(step["desc"]).classes("text-xl")
+                    ui.label(step["desc"]).classes("text-lg")
                     with ui.stepper_navigation():
-                        ui.button("Next", color="burnt-orange", on_click=stepper.next)
+                        if not step == steps[-1]:
+                            ui.button(
+                                "Next", color="burnt-orange", on_click=stepper.next
+                            )
                         if not step == steps[0]:
                             ui.button(
                                 'Back', color="burnt-orange", on_click=stepper.previous
