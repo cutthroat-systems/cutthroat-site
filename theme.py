@@ -42,6 +42,8 @@ def apply():
     for path in static_path.glob("css/*.css"):
         ui.add_css(path)
 
+    ui.dark_mode()
+
     # Adds above class colors to NiceGUI as Quasar colors (ex. BURNT_ORANGE -> burnt-orange)
     ui.colors(
         **{name.lower(): getattr(Color, name) for name in dir(Color) if name.isupper()}
