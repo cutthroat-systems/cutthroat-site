@@ -4,31 +4,33 @@ import theme
 
 
 def render():
-    with ui.header().classes("w-full h-[15vh] min-h-[4rem] p-0 m-0").style(
-        f"background-color: {theme.Color.PARCHMENT}; border-bottom: 7.5px solid {theme.Color.BURNT_ORANGE};"
+    ui.add_head_html(
+        '<meta name="viewport" content="width=device-width, initial-scale=1">'
+    )
+
+    with ui.header().classes(
+        'w-full bg-[var(--q-parchment)] border-b-[7.5px] border-[var(--q-burnt-orange)] '
+        'flex gap-6 flex-col items-center py-4 px-6 '
+        'sm:flex-row sm:justify-between sm:items-center sm: gap-0'
     ):
+        ui.element('img').props(f'src="{theme.Logo.LOGO_FULL}" alt="Logo"').classes(
+            'w-full max-w-[90vw] h-auto object-contain min-h-[6vh] '  # mobile
+            'sm:w-auto sm:max-h-[12vh] flex-shrink-0'  # desktop
+        ).style('display:block;').on("click", lambda: ui.navigate.to("/"))
+
         with ui.row().classes(
-            "h-full w-full justify-between items-center flex-nowrap overflow-hidden"
+            'mt-auto flex flex-wrap justify-center flex-1 items-center gap-y-8 '
+            'gap-4 text-sm '  # mobile defaults
+            'sm:flex-nowrap sm:justify-end sm:gap-16 sm:text-lg sm:px-4 sm:pb-2'  # desktop overrides
         ):
-
-            with ui.row().classes("h-full items-center justify-start"):
-                with ui.link(target="/").classes("cursor-pointer").style(
-                    "height: 11vh; display: flex; align-items: center;"
-                ):
-                    ui.html(
-                        f"""
-                        <img src="{theme.Logo.LOGO_FULL}" alt="Cutthroat Logo" title="Cutthroat Systems"
-                            style="height: 100%; width: auto; max-height: 11vh; object-fit: contain; display: block;" />
-                    """
-                    )
-
-            with ui.row().classes(
-                "flex-auto h-full gap-16 items-end justify-end pe-16 pb-2 flex-wrap overflow-hidden"
-            ):
-                nav_link("Home", "/")
-                nav_link("Services", "/services")
-                nav_link("About", "/about")
-                nav_link("Contact", "/contact")
+            # Each nav link shrinks to fit
+            for label, path in [
+                ("Home", "/"),
+                ("Services", "/services"),
+                ("About", "/about"),
+                ("Contact", "/contact"),
+            ]:
+                nav_link(label, path)
 
 
 def nav_link(name: str, target: str):
@@ -39,11 +41,9 @@ def nav_link(name: str, target: str):
     link = (
         ui.link(name, target)
         .classes(
-            f"font-bold cursor-pointer {is_underlined} transition duration-200 ease-in-out"
+            f"text-2xl sm:text-5xl font-extrabold cursor-pointer {is_underlined} transition duration-200 ease-in-out flex-shrink-0 font-semibold"
         )
-        .style(
-            f"color: {theme.Color.DEEP_BROWN}; font-size: 4.75vh; text-decoration-thickness: 3px;"
-        )
+        .style(f"color: {theme.Color.DEEP_BROWN}; text-decoration-thickness: 3px;")
     )
 
     link.on(

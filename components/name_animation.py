@@ -4,7 +4,6 @@ import theme
 
 SVG = """
     <svg
-        width="60vw"
         style="overflow: visible; display: block; height: auto;"
         viewBox="0 0 190.38499 22.105886"
         version="1.1"
@@ -47,4 +46,4 @@ def render():
         with ui.card().classes("justify-center items-center rounded-2xl p-0").style(
             f"background-color: {theme.Color.PARCHMENT}; border: 5px solid {theme.Color.BURNT_ORANGE};"
         ):
-            ui.html(SVG).classes("p-5 overflow-visible")
+            ui.html(SVG).classes("w-[80vw] sm:w-[60vw] p-5 overflow-visible")

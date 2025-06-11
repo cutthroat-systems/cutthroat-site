@@ -25,11 +25,11 @@ people = [
 
 
 def render() -> None:
-    with ui.column().classes('w-[80vw] mx-auto pt-24 pb-0 gap-4').props(
+    with ui.column().classes('w-full sm:w-[80vw] mx-auto pt-24 pb-0 gap-4').props(
         'id=about'
     ).style("padding: 5px;"):
         ui.label('Meet Our Team').classes(
-            'text-7xl italic font-bold self-center pb-4'
+            'text-7xl italic font-bold self-center text-center pb-4'
         ).style(f"color: {theme.Color.SOFT_ORANGE};")
 
         for i, person in enumerate(people):
@@ -37,12 +37,12 @@ def render() -> None:
             direction = "flex-row" if i % 2 == 0 else "flex-row-reverse"
 
             with ui.card().classes(
-                f'rounded-2xl shadow-sm w-[65vw] h-auto px-8 py-8 mx-[5vw] {align} '
-                f'flex {direction} gap-8 items-stretch'
+                f'sm:rounded-2xl shadow-sm w-full sm:w-[65vw] h-auto p-4 sm:p-8 sm:mx-[5vw] self-center sm:{align} '
+                f'flex flex-col sm:{direction} gap-8 items-stretch'
             ).style(f'background-color: {theme.Color.PARCHMENT};'):
                 # Headshot image wrapped in avatar
                 with ui.column().classes(
-                    'w-1/4 max-w-[16rem] justify-center items-center'
+                    'w-full sm:w-1/4 max-w-[16rem] justify-center items-center self-center'
                 ):
                     with ui.avatar(color="burnt-orange").classes("w-full h-auto"):
                         ui.image(person["icon"])
@@ -50,10 +50,10 @@ def render() -> None:
                 with ui.column().classes('flex-1 items-center px-4'):
                     # Name and title
                     ui.label(person.get("name", "Name")).classes(
-                        'text-4xl font-bold'
+                        'text-4xl text-center font-bold'
                     ).style(f"color: {theme.Color.DARK_BROWN}")
                     ui.label(person.get("title", "Title")).classes(
-                        'text-3xl italic font-bold'
+                        'text-3xl text-center italic font-bold'
                     ).style(f"color: {theme.Color.BURNT_ORANGE};")
                     # Horizontal separator
                     ui.separator()

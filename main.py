@@ -1,5 +1,3 @@
-import os
-
 from nicegui import ui
 
 import theme
@@ -32,15 +30,23 @@ def show_contact():
     contact.render()
 
 
-if __name__ == "__main__":
+if __name__ in {"__main__", "__mp_main__"}:
 
-    port = int(os.environ.get('PORT', 8080))
-    host = "0.0.0.0"
+    # port = int(os.environ.get('PORT', 80))
+    # host = "0.0.0.0"
+
+    # ui.run(
+    #     reload=False,
+    #     title="Cutthroat Systems",
+    #     host=host,
+    #     port=port,
+    #     favicon=theme.Logo.LOGO,
+    # )
 
     ui.run(
-        reload=False,
+        reload=True,
         title="Cutthroat Systems",
-        host=host,
-        port=port,
+        host="127.0.0.1",
+        port=8081,
         favicon=theme.Logo.LOGO,
     )

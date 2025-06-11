@@ -82,7 +82,7 @@ def render() -> None:
         )
 
         with ui.card().classes(
-            'rounded-2xl shadow-lg w-[50vw] px-8 py-6 flex flex-col items-start gap-4'
+            'rounded-2xl shadow-lg w-[90vw] px-8 py-6 flex flex-col items-start gap-4 sm:w-[50vw]'
         ).style(f"background-color: {theme.Color.PARCHMENT};"):
             ui.label('Name').classes('font-bold text-xl').style(
                 f"color: {theme.Color.DARK_BROWN};"

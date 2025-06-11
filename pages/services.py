@@ -71,11 +71,7 @@ def render() -> None:
         )
 
         ui.label(
-            "At Cutthroat Systems, our team of exceptional engineers brings together expertise in software, mechanical, and aerospace engineering to tackle even the most complex challenges. "
-            "We specialize in consulting, CAD design and prototyping, precision mechanical engineering, aerospace solutions, custom software development, and systems design for calibration and automation. "
-            "We are committed to delivering innovative solutions tailored to the unique needs of each client, ensuring every project is approached with creativity and precision. "
-            "Our mission is to provide cutting-edge services that empower your business to thrive. "
-            "Client satisfaction is at the heart of everything we do, and we take pride in transforming challenges into opportunities. "
+            "At Cutthroat Systems, our multidisciplinary engineers deliver tailored solutions across consulting, CAD prototyping, precision mechanics, aerospace, custom software, and automation systems. We combine creativity and technical rigor to solve complex challenges, ensuring each project meets exacting standards. Our mission is to empower your business with innovative, end-to-end services—and we take pride in turning every challenge into an opportunity for success."
         ).classes('text-lg text-center font-medium pb-4').style(
             f"color: {theme.Color.PARCHMENT}; max-width: 120ch;"
         )
@@ -84,14 +80,13 @@ def render() -> None:
         for i, (category, items) in enumerate(services.items()):
             img = imglist[i]
             with ui.card().classes(
-                'parallax-card rounded-2xl shadow-lg w-[64vw] px-6 pt-6 pb-6 mb-5 '
+                'parallax-card rounded-2xl shadow-lg w-[90vw] sm:w-[64vw] px-6 pt-6 pb-6 mb-5 '
                 'flex flex-col items-center text-center '
-                'hover:shadow-2xl transition-shadow duration-300'
             ).style(f'background-color: {theme.Color.PARCHMENT};'):
 
                 # Parallax header container
                 with ui.element('div').classes(
-                    'parallax-header rounded-t-2xl rounded-b-none'
+                    'parallax-header rounded-t-4xl rounded-b-none text-lg sm:text-5xl'
                 ).style(f"background-image: url('{img}');"):
                     ui.label(category).classes('category-title')
 
