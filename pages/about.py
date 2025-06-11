@@ -25,9 +25,9 @@ people = [
 
 
 def render() -> None:
-    with ui.column().classes('w-full mx-auto pt-24 pb-0 gap-4').props('id=about').style(
-        "padding: 5px;"
-    ):
+    with ui.column().classes('w-[80vw] mx-auto pt-24 pb-0 gap-4').props(
+        'id=about'
+    ).style("padding: 5px;"):
         ui.label('Meet Our Team').classes(
             'text-7xl italic font-bold self-center pb-4'
         ).style(f"color: {theme.Color.SOFT_ORANGE};")
@@ -41,7 +41,9 @@ def render() -> None:
                 f'flex {direction} gap-8 items-stretch'
             ).style(f'background-color: {theme.Color.PARCHMENT};'):
                 # Headshot image wrapped in avatar
-                with ui.column().classes('w-1/4 justify-center items-center'):
+                with ui.column().classes(
+                    'w-1/4 max-w-[16rem] justify-center items-center'
+                ):
                     with ui.avatar(color="burnt-orange").classes("w-full h-auto"):
                         ui.image(person["icon"])
                 # Right side text

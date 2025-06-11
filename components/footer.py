@@ -10,10 +10,6 @@ def render():
         f"""
             background-color: {theme.Color.PARCHMENT};
             border-top: 5px solid {theme.Color.BURNT_ORANGE};
-            border-left: 5px solid {theme.Color.BURNT_ORANGE};
-            border-right: 5px solid {theme.Color.BURNT_ORANGE};
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
             padding-top: 0.5rem;
             padding-bottom: 0.5rem;
         """

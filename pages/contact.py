@@ -71,7 +71,7 @@ def render() -> None:
     with ui.column().classes('w-full mx-auto pt-24 pb-16 gap-8 items-center').props(
         'id=contact-us'
     ).style("padding: 5px"):
-        ui.label('Contact Us').classes('text-5xl italic font-bold text-center').style(
+        ui.label('Contact Us').classes('text-7xl italic font-bold text-center').style(
             f"color: {theme.Color.SOFT_ORANGE};"
         )
         ui.label(
@@ -82,7 +82,7 @@ def render() -> None:
         )
 
         with ui.card().classes(
-            'rounded-2xl shadow-lg w-2/3 px-8 py-6 flex flex-col items-start gap-4'
+            'rounded-2xl shadow-lg w-[50vw] px-8 py-6 flex flex-col items-start gap-4'
         ).style(f"background-color: {theme.Color.PARCHMENT};"):
             ui.label('Name').classes('font-bold text-xl').style(
                 f"color: {theme.Color.DARK_BROWN};"

@@ -46,8 +46,8 @@
   z-index: 1;
   color: var(--q-dark-brown);
   background-color: var(--q-soft-orange);
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
+  padding: 0.25rem 1rem;
+  border-radius: 0.5rem;
   font-size: 2.5rem;
   font-weight: bolder;
 }

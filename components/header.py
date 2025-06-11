@@ -49,7 +49,7 @@ def nav_link(name: str, target: str):
     link.on(
         "mouseover",
         lambda: link.style(
-            f"color: {theme.Color.SOFT_ORANGE}; transform: scale(1.05); text-decoration-thickness: 3px;"
+            f"color: {theme.Color.BURNT_ORANGE}; transform: scale(1.05); text-decoration-thickness: 3px;"
         ),
     )
     link.on(
