@@ -122,7 +122,7 @@ def render():
         ]
 
         with ui.stepper().props('horizontal alternative-labels').classes(
-            'rounded-2xl w-[62vw]'
+            'rounded-2xl w-[70vw]'
         ).style(f"background-color: {theme.Color.PARCHMENT};") as stepper:
             for step in steps:
                 with ui.step(step["title"], step["title"], icon=step["icon"]).props(
