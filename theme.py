@@ -38,22 +38,21 @@ static_path = Path(__file__).parent.resolve() / "static"
 
 
 def apply():
+
     ui.add_head_html(
         f'''
-      <meta name="theme-color" content="{Color.DEEP_BROWN}">
-      <style>
+    <style>
         html, body, .q-layout, .q-page, #q-app {{
           background-color: {Color.DEEP_BROWN} !important;
         }}
-      </style>
-    '''
+    </style>
+'''
     )
-
     app.add_static_files("/static", static_path)
     for path in static_path.glob("css/*.css"):
         ui.add_css(path)
 
-    ui.dark_mode()
+    ui.dark_mode(True)
 
     # Adds above class colors to NiceGUI as Quasar colors (ex. BURNT_ORANGE -> burnt-orange)
     ui.colors(

@@ -5,20 +5,31 @@ from pages import about, contact, home, services
 
 ui.add_head_html(
     f'''
-    <link rel="icon" href="/static/img/favicon/favicon.ico" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://cutthroatsystems.com/" />
-    <meta property="og:title" content="Cutthroat Systems - Custom Engineering Solutions" />
+    <title>Cutthroat Systems</title>
+    <link rel="canonical" href="https://cutthroatsystems.com/" />
+    <meta name="description" content="We help businesses automate workflows and integrate hardware & software.">
+    <meta name="theme-color" content="{theme.Color.DEEP_BROWN}">
+
+    <meta property="og:locale"      content="en_US" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:site_name"   content="Cutthroat Systems" />
+    <meta property="og:url"         content="https://cutthroatsystems.com/" />
+    <meta property="og:title"       content="Cutthroat Systems - Custom Engineering Solutions" />
     <meta property="og:description" content="We help businesses automate workflows and integrate hardware & software." />
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/static/img/favicon/android-chrome-192x192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/static/img/favicon/android-chrome-512x512.png" />
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="msapplication-TileColor" content="{theme.Color.DEEP_BROWN}" />
-    <meta name="msapplication-TileImage" content="/static/mstile-150x150.png" />
+    <meta property="og:image"       content="https://cutthroatsystems.com/static/img/logo/preview-1200x630.png"/>
+
+    <link rel="icon"                                    href="/static/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/png"   sizes="32x32"   href="/static/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png"   sizes="16x16"   href="/static/img/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon"        sizes="180x180" href="/static/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png"   sizes="192x192" href="/static/img/favicon/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png"   sizes="512x512" href="/static/img/favicon/android-chrome-512x512.png" />
+    <link rel="manifest"                                href="/static/img/favicon/site.webmanifest">
+
+    <meta name="twitter:card"           content="summary_large_image" />
+    <meta name="twitter:title"          content="Cutthroat Systems - Custom Engineering Solutions" />
+    <meta name="twitter:description"    content="We help businesses automate workflows and integrate hardware & software." />
+    <meta name="twitter:image"          content="https://cutthroatsystems.com/static/img/logo/preview-1200x630.png" />
 '''
 )
 
