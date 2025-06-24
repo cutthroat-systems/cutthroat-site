@@ -5,46 +5,32 @@ from components import name_animation
 
 
 def render():
-
     # --- Home Animation ---
     name_animation.render()
 
     # --- About Section ---
-    with ui.column().classes("w-full mx-auto pt-8 pb-0 gap-4 items-center").props(
-        "id=about"
-    ):
-        ui.label(
-            "Engineering efficiency through custom software and hardware integration."
-        ).classes("text-4xl italic font-bold text-center").style(
-            f"color: {theme.Color.SOFT_ORANGE};"
-        )
+    with ui.column().classes("w-full mx-auto pt-8 pb-0 gap-4 items-center").props("id=about"):
+        ui.label("Engineering efficiency through custom software and hardware integration.").classes(
+            "text-4xl italic font-bold text-center"
+        ).style(f"color: {theme.Color.SOFT_ORANGE};")
 
         ui.label(
             (
-                """
-            We're a consulting firm of engineers specializing in tailored software and embedded hardware
-            solutions that solve real-world operational challenges. From automating manual workflows to designing
-            full-stack systems that interface with physical devices, we help businesses improve efficiency,
-            reduce complexity, and scale with confidence.
-        """
+                "We're a consulting firm of engineers based out of San Diego, California specializing in tailored software and embedded hardware solutions that solve real-world operational challenges. From automating manual workflows to designing full-stack systems that interface with physical devices, we help businesses improve efficiency, reduce complexity, and scale with confidence."
             )
-        ).classes("text-xl text-center").style(
-            f"color: {theme.Color.PARCHMENT}; max-width: 90ch;"
-        )
+        ).classes("text-xl text-center").style(f"color: {theme.Color.PARCHMENT}; max-width: 95ch;")
 
     # --- Services Section ---
-    with ui.column().classes("w-full mx-auto pt-14 pb-0 gap-8 items-center").props(
-        "id=services"
-    ):
-        ui.label("What We Do").classes(
-            "text-6xl italic font-bold text-center pb-2"
-        ).style(f"color: {theme.Color.SOFT_ORANGE};")
+    with ui.column().classes("w-full mx-auto pt-14 pb-0 gap-8 items-center").props("id=services"):
+        ui.label("What We Do").classes("text-6xl italic font-bold text-center pb-2").style(
+            f"color: {theme.Color.SOFT_ORANGE};"
+        )
 
-        with ui.row().classes("flex-wrap justify-center gap-8"):
+        with ui.row().classes("flex-wrap justify-center gap-8 items-stretch"):
             service_data = [
                 {
                     "title": "Software Engineering",
-                    "desc": "Custom software and embedded solutions that bring your product, process, or system to life.",
+                    "desc": "Custom software and embedded solutions that bring your product or system to life.",
                     "icon": theme.Icon.SOFTWARE,
                 },
                 {
@@ -60,33 +46,29 @@ def render():
             ]
 
             for service in service_data:
-                with ui.card().classes(
-                    "rounded-2xl shadow-lg transform transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
-                ).style(
-                    f"background-color: {theme.Color.PARCHMENT}; width: 21vw; min-width: 250px;"
-                ).on(
-                    "click", lambda: ui.navigate.to("/services")
+                with (
+                    ui.card()
+                    .classes(
+                        "rounded-2xl shadow-lg px-0 py-2 flex flex-col h-full"
+                        "transform transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
+                    )
+                    .style(f"background-color: {theme.Color.PARCHMENT}; width: 18vw; min-width: 250px;")
+                    .on("click", lambda: ui.navigate.to("/services"))
                 ):
-                    with ui.column().classes("items-center p-6 gap-4").style(
-                        f"color: {theme.Color.DARK_BROWN};"
-                    ):
-                        ui.image(service["icon"]).props("fit=contain").classes(
-                            "w-16 h-16 service-icon"
-                        ).style("overflow: visible; object-fit: contain;")
-                        ui.label(service["title"]).classes(
-                            "text-2xl font-bold text-center"
-                        ).style(f"color: {theme.Color.BURNT_ORANGE};")
-                        ui.label(service["desc"]).classes(
-                            "text-lg text-center font-medium"
+                    with ui.column().classes("items-center p-6 gap-4").style(f"color: {theme.Color.DARK_BROWN};"):
+                        ui.image(service["icon"]).props("fit=contain").classes("w-16 h-16 service-icon").style(
+                            "overflow: visible; object-fit: contain;"
                         )
+                        ui.label(service["title"]).classes("text-2xl font-bold text-center").style(
+                            f"color: {theme.Color.BURNT_ORANGE};"
+                        )
+                        ui.label(service["desc"]).classes("text-lg text-center font-medium")
 
     # --- How We Work Section ---
-    with ui.column().classes("w-[80vw] mx-auto pt-12 my-8 gap-8 items-center").props(
-        "id=workflow"
-    ):
-        ui.label("How We Work").classes(
-            "text-6xl italic font-bold text-center pb-2"
-        ).style(f"color: {theme.Color.SOFT_ORANGE};")
+    with ui.column().classes("w-[80vw] mx-auto pt-12 my-8 gap-8 items-center").props("id=workflow"):
+        ui.label("How We Work").classes("text-6xl italic font-bold text-center pb-2").style(
+            f"color: {theme.Color.SOFT_ORANGE};"
+        )
 
         steps = [
             {
@@ -121,9 +103,12 @@ def render():
             },
         ]
 
-        with ui.stepper().props('horizontal alternative-labels').classes(
-            'rounded-2xl w-[70vw]'
-        ).style(f"background-color: {theme.Color.PARCHMENT};") as stepper:
+        with (
+            ui.stepper()
+            .props("horizontal alternative-labels")
+            .classes("rounded-2xl w-[80vw]")
+            .style(f"background-color: {theme.Color.PARCHMENT};") as stepper
+        ):
             for step in steps:
                 with ui.step(step["title"], step["title"], icon=step["icon"]).props(
                     "active-color=burnt-orange done-color=soft-orange header-nav=true"
@@ -131,25 +116,19 @@ def render():
                     ui.label(step["desc"]).classes("text-lg")
                     with ui.stepper_navigation():
                         if not step == steps[-1]:
-                            ui.button(
-                                "Next", color="burnt-orange", on_click=stepper.next
-                            )
+                            ui.button("Next", on_click=stepper.next)
                         if not step == steps[0]:
-                            ui.button(
-                                'Back', color="burnt-orange", on_click=stepper.previous
-                            ).props("flat")
+                            ui.button("Back", on_click=stepper.previous).props("flat")
 
     # --- Contact Section ---
     with ui.column().classes("w-full gap-4 items-center pb-0 mt-8").props("id=contact"):
-        ui.label("Contact Us").classes(
-            "text-6xl italic font-bold text-center pb-2"
-        ).style(f"color: {theme.Color.SOFT_ORANGE};")
-
-        ui.label(
-            "Let's talk about your next project. We're here to help engineer it right."
-        ).classes("italic text-xl text-center").style(
-            f"color: {theme.Color.PARCHMENT};"
+        ui.label("Contact Us").classes("text-6xl italic font-bold text-center pb-2").style(
+            f"color: {theme.Color.SOFT_ORANGE};"
         )
+
+        ui.label("Let's talk about your next project. We're here to help engineer it right.").classes(
+            "italic text-xl text-center"
+        ).style(f"color: {theme.Color.PARCHMENT};")
 
         ui.html(
             f"""
@@ -159,6 +138,4 @@ def render():
             <a href="mailto:info@cutthroatsystems.com" class="text-[{theme.Color.SOFT_ORANGE}] italic underline hover:text-[{theme.Color.LIGHT_SALMON}]">info@cutthroatsystems.com</a>
 
         """
-        ).classes("text-xl text-center text-base").style(
-            f"color: {theme.Color.PARCHMENT}"
-        )
+        ).classes("text-xl text-center text-base").style(f"color: {theme.Color.PARCHMENT}")

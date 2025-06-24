@@ -41,9 +41,10 @@ SVG = """
 
 
 def render():
-
     with ui.column().classes("w-full justify-center items-center pt-6"):
-        with ui.card().classes("justify-center items-center rounded-2xl p-0").style(
-            f"background-color: {theme.Color.PARCHMENT}; border: 5px solid {theme.Color.BURNT_ORANGE};"
+        with (
+            ui.card()
+            .classes("justify-center items-center rounded-2xl p-0")
+            .style(f"background-color: {theme.Color.PARCHMENT}; border: 5px solid {theme.Color.BURNT_ORANGE};")
         ):
             ui.html(SVG).classes("w-[80vw] sm:w-[60vw] p-5 overflow-visible")

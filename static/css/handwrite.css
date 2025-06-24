@@ -4,13 +4,13 @@
  * W. https://svgartista.net
  **************************************************/
  svg#svg1 path {
-  stroke: #e85e1c !important; // {theme.Color.SOFT_ORANGE}
-  stroke-width: 1.25px !important;
-  stroke-linecap: round !important;
-  stroke-linejoin: round !important;
-  stroke-opacity: 1 !important;
-  fill: none !important;
-  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25)) !important;
+  stroke: var(--q-burnt-orange)                           !important;
+  stroke-width: 1.25px                                    !important;
+  stroke-linecap: round                                   !important;
+  stroke-linejoin: round                                  !important;
+  stroke-opacity: 1                                       !important;
+  fill: none                                              !important;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25))  !important;
  }
 
  @-webkit-keyframes animate-svg-stroke-1 {
@@ -792,6 +792,6 @@
   }
 
   .handwritten-27 {
-    -webkit-animation: animate-svg-stroke-27 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 5.2s both;
-            animation: animate-svg-stroke-27 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 5.2s both;
+    -webkit-animation: animate-svg-stroke-27 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 4s both;
+            animation: animate-svg-stroke-27 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 4s both;
   }

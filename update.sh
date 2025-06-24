@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
-
 set -euo pipefail   # quit on error, unset var, or pipe fail
 
 # arg check
-[[ $# -eq 1 ]] || { echo "Usage: $0 <git-tag>" >&2; exit 1; }
-TAG=$1
+if [[ $# -gt 1 ]]; then
+ echo "Usage: $0 <git-tag>" >&2; exit 1;
+elif [[ $# -eq 1 ]]; then
+  TAG=$1
+else
+  TAG="main"
+fi
 
 CONTAINER="cutthroat-site"
 LIVE_DIR=$(pwd)
@@ -14,17 +18,17 @@ LIVE_DIR=$(pwd)
 docker inspect "$CONTAINER" >/dev/null 2>&1 || {
   echo "No container named $CONTAINER" >&2; exit 1; }
 
-# scratch spac, self-cleans on exit
+# scratch space, self-cleans on exit
 TMP_DIR=$(mktemp -d)
 trap 'rm -rf "$TMP_DIR"' EXIT
 
 # grab code for the given tag
-git clone --depth 1 --branch "$TAG" \
+git clone -q --depth 1 --branch "$TAG" \
   https://github.com/cutthroat-systems/cutthroat-site "$TMP_DIR"
 
 # swap it in
-docker stop "$CONTAINER"
+docker stop "$CONTAINER" >/dev/null
 rsync -a --delete --exclude deploy.sh "$TMP_DIR"/ "$LIVE_DIR"/
-docker start "$CONTAINER"
+docker start "$CONTAINER" >/dev/null
 
-echo "Yur $TAG has been deployed to $CONTAINER pardner!"
+echo "Yur tag $TAG has been deployed to yur container $CONTAINER pardner!"

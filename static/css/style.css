@@ -62,3 +62,7 @@
 .nicegui-drawer.q-drawer--right {
   background-color: var(--q-parchment) !important;
 }
+
+.q-field__bottom {
+  padding-top: 16px !important;
+}
