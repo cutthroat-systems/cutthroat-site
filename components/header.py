@@ -19,9 +19,9 @@ def render():
         ).style("display:block;").on("click", lambda: ui.navigate.to("/"))
 
         with ui.row().classes(
-            "mt-auto flex flex-wrap justify-center flex-1 items-center gap-y-8 "
-            "gap-4 text-sm "  # mobile defaults
-            "sm:flex-nowrap sm:justify-end sm:gap-16 sm:text-lg sm:px-4 sm:pb-2"  # desktop overrides
+            "mt-auto flex flex-wrap justify-center flex-1 items-center gap-y-8 flex-nowrap "
+            "gap-2 text-sm "  # mobile defaults
+            "sm:justify-end sm:gap-16 sm:text-lg sm:px-4 sm:pb-2"  # desktop overrides
         ):
             # Each nav link shrinks to fit
             for label, path in [
@@ -34,7 +34,7 @@ def render():
 
 
 def nav_link(name: str, target: str):
-    _underline_thickness = 5
+    _underline_thickness = 4
     is_underlined = "underline" if context.client.page.path == target else "no-underline"
 
     link = (

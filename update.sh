@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# chmod +x ./update.sh
 
 set -euo pipefail   # quit on error, unset var, or pipe fail
 
@@ -31,4 +32,4 @@ docker stop "$CONTAINER" >/dev/null
 rsync -a --delete --exclude deploy.sh "$TMP_DIR"/ "$LIVE_DIR"/
 docker start "$CONTAINER" >/dev/null
 
-echo "Yur tag $TAG has been deployed to yur container $CONTAINER pardner!"
+echo "Yur tag '$TAG' has been deployed to yur container '$CONTAINER' pardner!"

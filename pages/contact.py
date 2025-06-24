@@ -48,7 +48,7 @@ def _send_email(name: str, email: str, phone: str, message: str) -> None:
         "to": [
             {
                 "email_address": {
-                    "address": "chase@cutthroatsystems.com",  #############################################
+                    "address": "team@cutthroatsystems.com",
                     "name": "Cutthroat Team",
                 }
             }
@@ -56,7 +56,7 @@ def _send_email(name: str, email: str, phone: str, message: str) -> None:
         "subject": f"{name}: Contact Form Submission",
         "htmlbody": (
             f"<div>"
-            f"You've recieved a submission from https://cutthroat.systems/contact<br>"
+            f"You've recieved a submission from https://cutthroat.systems/contact:<br><br>"
             f"<b>Name:</b> {html.escape(name)}<br>"
             f"<b>Email:</b> {html.escape(email)}<br>"
             f"<b>Phone:</b> {phone or '—'}<br>"
